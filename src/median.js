@@ -1,4 +1,4 @@
-const average = require('../lib/average')
+import average from './average'
 
 /**
  * Finds the center number
@@ -9,7 +9,7 @@ const average = require('../lib/average')
  * @example
  * median([ 1, 5, 6, 3, 7, 8, 9 ])
  */
-function median (numbers = []) {
+export default function median (numbers = []) {
   numbers.sort()
 
   const middleIndex = Math.round(numbers.length / 2) - 1
@@ -18,5 +18,3 @@ function median (numbers = []) {
 
   return average(nums)
 }
-
-module.exports = median

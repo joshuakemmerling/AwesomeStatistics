@@ -7,8 +7,6 @@
  * @example
  * average([ 1, 5, 6, 3, 7, 8, 9 ])
  */
-function average (numbers = []) {
+export default function average (numbers = []) {
   return numbers.reduce((a, v) => a + v, 0) / numbers.length
 }
-
-module.exports = average

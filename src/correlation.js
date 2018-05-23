@@ -7,7 +7,7 @@
  * @example
  * correlation([ [ 2, 3 ], [ 4, 3 ], [ 5, 9 ], [ 2, 9 ], [ 4, 7 ], [ 5, 5 ] ])
  */
-function correlation (points = []) {
+export default function correlation (points = []) {
   const sumX = points.reduce((a, [ x, y ]) => a + x, 0)
   const sumY = points.reduce((a, [ x, y ]) => a + y, 0)
   const sumXy = points.reduce((a, [ x, y ]) => a + x * y, 0)
@@ -22,5 +22,3 @@ function correlation (points = []) {
 
   return answer
 }
-
-module.exports = correlation

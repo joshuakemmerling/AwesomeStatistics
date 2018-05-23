@@ -7,12 +7,10 @@
  * @example
  * range([ 1, 5, 6, 3, 7, 8, 9 ])
  */
-function range (numbers = []) {
+export default function range (numbers = []) {
   if (numbers.length === 0) {
     return 0
   }
 
   return Math.max(...numbers) - Math.min(...numbers)
 }
-
-module.exports = range

@@ -1,11 +1,12 @@
 {
-  "name": "awesomestatistics",
+  "name": "awesome-statistics",
   "version": "0.0.0",
-  "description": "Awesome statistic functions.",
-  "main": "index.js",
+  "description": "Awesome statistical functions.",
+  "main": "awesomestatistics.js",
   "scripts": {
+    "lint": "eslint ./src/*.js",
     "test": "jest --coverage",
-    "lint": "eslint ./src/lib/*.js"
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -28,14 +29,19 @@
   },
   "homepage": "https://github.com/hellojosh/AwesomeStatistics#readme",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^22.4.4",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-google": "^0.9.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.1.0",
-    "jest": "^22.4.4"
+    "jest": "^22.4.4",
+    "rollup": "^0.59.2",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-node-resolve": "^3.3.0"
   }
 }

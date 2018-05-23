@@ -1,4 +1,4 @@
-const variance = require('./variance')
+import variance from './variance'
 
 /**
  * Calculates the standard deviation from the set of numbers.
@@ -9,8 +9,6 @@ const variance = require('./variance')
  * @example
  * standardDeviation([ 1, 5, 6, 3, 7, 8, 9 ])
  */
-function standardDeviation (numbers = []) {
+export default function standardDeviation (numbers = []) {
   return Math.sqrt(variance(numbers))
 }
-
-module.exports = standardDeviation
