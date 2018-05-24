@@ -1,7 +1,7 @@
 {
   "name": "awesome-statistics",
-  "version": "0.0.0",
-  "description": "Awesome statistical functions.",
+  "version": "0.1.0",
+  "description": "A small library of awesome statistical functions.",
   "main": "awesomestatistics.js",
   "scripts": {
     "lint": "eslint ./src/*.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hellojosh/AwesomeStatistics.git"
+    "url": "https://github.com/hellojosh/AwesomeStatistics.git"
   },
   "keywords": [
     "statistics",
@@ -23,11 +23,11 @@
     "range"
   ],
   "author": "Joshua Kemmerling (http://hellojosh.com)",
-  "license": "MIT",
+  "license": "unlicense",
   "bugs": {
     "url": "https://github.com/hellojosh/AwesomeStatistics/issues"
   },
-  "homepage": "https://github.com/hellojosh/AwesomeStatistics#readme",
+  "homepage": "https://github.com/hellojosh/AwesomeStatistics",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-jest": "^22.4.4",
