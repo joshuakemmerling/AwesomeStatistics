@@ -2,8 +2,10 @@
 
 A small library of awesome statistical functions.
 
-[![build status](https://travis-ci.org/hellojosh/AwesomeStatistics.svg?branch=master)](https://travis-ci.org/hellojosh/AwesomeStatistics)
-[![npm version](https://img.shields.io/npm/v/awesome-statistics.svg?style=flat-square)](https://www.npmjs.com/package/awesome-statistics)
+
+[![build status](https://img.shields.io/travis/hellojosh/AwesomeStatistics.svg)](https://travis-ci.org/hellojosh/AwesomeStatistics)
+[![npm version](https://img.shields.io/npm/v/awesome-statistics.svg)](https://www.npmjs.com/package/awesome-statistics)
+
 
 ## Install
 
