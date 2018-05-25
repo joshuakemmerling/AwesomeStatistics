@@ -5,10 +5,31 @@
 }(this, (function () { 'use strict';
 
   /**
+   * Adds all numbers together.
+   *
+   * @param {array} numbers = [] - Numbers to be added
+   * @returns {number} - Sum
+   *
+   * @example
+   * sum([ 1, 2, 3 ])
+   */
+  function sum() {
+    var numbers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var iteratee = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (v) {
+      return v;
+    };
+    var initialValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+    return numbers.reduce(function (a, v, i, arr) {
+      return a + iteratee(v, i, arr);
+    }, initialValue);
+  }
+
+  /**
    * Calculates the average from the set of numbers.
    *
    * @param {array} numbers = [] - Numbers to calculate
-   * @returns {number} - Average value
+   * @returns {number} - Calculated average
    *
    * @example
    * average([ 1, 5, 6, 3, 7, 8, 9 ])
@@ -16,9 +37,7 @@
   function average() {
     var numbers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-    return numbers.reduce(function (a, v) {
-      return a + v;
-    }, 0) / numbers.length;
+    return sum(numbers) / numbers.length;
   }
 
   var slicedToArray = function () {
@@ -73,7 +92,7 @@
    * Calculates the correlation of the provided points.
    *
    * @param {array} points = [] - X, Y values
-   * @returns {number} - Correlation of the data points
+   * @returns {number} - Calculated correlation
    *
    * @example
    * correlation([ [ 2, 3 ], [ 4, 3 ], [ 5, 9 ], [ 2, 9 ], [ 4, 7 ], [ 5, 5 ] ])
@@ -81,56 +100,57 @@
   function correlation() {
     var points = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-    var sumX = points.reduce(function (a, _ref) {
-      var _ref2 = slicedToArray(_ref, 2),
-          x = _ref2[0],
-          y = _ref2[1];
+    var xAvg = average(points.map(function (_ref) {
+      var _ref2 = slicedToArray(_ref, 1),
+          x = _ref2[0];
 
-      return a + x;
-    }, 0);
-    var sumY = points.reduce(function (a, _ref3) {
+      return x;
+    }));
+    var yAvg = average(points.map(function (_ref3) {
       var _ref4 = slicedToArray(_ref3, 2),
-          x = _ref4[0],
+          _ = _ref4[0],
           y = _ref4[1];
 
-      return a + y;
-    }, 0);
-    var sumXy = points.reduce(function (a, _ref5) {
+      return y;
+    }));
+    var newPoints = points.map(function (_ref5) {
       var _ref6 = slicedToArray(_ref5, 2),
           x = _ref6[0],
           y = _ref6[1];
 
-      return a + x * y;
-    }, 0);
-    var sumXx = points.reduce(function (a, _ref7) {
+      return [x - xAvg, y - yAvg];
+    });
+    var sumXy = sum(newPoints, function (_ref7) {
       var _ref8 = slicedToArray(_ref7, 2),
           x = _ref8[0],
           y = _ref8[1];
 
-      return a + x * x;
-    }, 0);
-    var sumYy = points.reduce(function (a, _ref9) {
-      var _ref10 = slicedToArray(_ref9, 2),
-          x = _ref10[0],
-          y = _ref10[1];
+      return x * y;
+    });
+    var sumXx = sum(newPoints, function (_ref9) {
+      var _ref10 = slicedToArray(_ref9, 1),
+          x = _ref10[0];
 
-      return a + y * y;
-    }, 0);
+      return x * x;
+    });
+    var sumYy = sum(newPoints, function (_ref11) {
+      var _ref12 = slicedToArray(_ref11, 2),
+          _ = _ref12[0],
+          y = _ref12[1];
 
-    var step1 = points.length * sumXy - sumX * sumY;
-    var step2 = points.length * sumXx - sumX * sumX;
-    var step3 = points.length * sumYy - sumY * sumY;
-    var step4 = Math.sqrt(step2 * step3);
-    var answer = step1 / step4;
+      return y * y;
+    });
 
-    return answer;
+    return sumXy / Math.sqrt(sumXx * sumYy);
   }
 
   /**
-   * Finds the center number
+   * Finds the center number of a sorted array. If
+   * there are 2 numbers in the center it returns
+   * the average.
    *
    * @param {array} numbers = [] - Numbers to calculate
-   * @returns {array} - Array of most occured numbers
+   * @returns {array} - Center number
    *
    * @example
    * median([ 1, 5, 6, 3, 7, 8, 9 ])
@@ -138,20 +158,17 @@
   function median() {
     var numbers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-    numbers.sort();
+    var index = (numbers.length - 1) / 2;
 
-    var middleIndex = Math.round(numbers.length / 2) - 1;
-    var middleIndexRem = numbers.length % 2 === 0 ? 1 : 0;
-    var nums = numbers.slice(middleIndex, middleIndex + 1 + middleIndexRem);
-
-    return average(nums);
+    return average(numbers.sort().slice(Math.floor(index), Math.ceil(index) + 1));
   }
 
   /**
-   * Finds the number(s) that occur the most
+   * Finds the value(s) that occurs most frequently
+   * in a given set of data.
    *
    * @param {array} numbers = [] - Numbers to calculate
-   * @returns {array} - Array of most occured numbers
+   * @returns {array} - Most occured numbers
    *
    * @example
    * mode([ 1, 5, 6, 3, 7, 8, 9 ])
@@ -178,10 +195,11 @@
   }
 
   /**
-   * Finds the range from a data set
+   * Finds the difference between the smallest and
+   * largest numbers in the data set.
    *
    * @param {array} numbers = [] - Numbers to calculate
-   * @returns {number} - Difference between the high and low values
+   * @returns {number} - Calculated range
    *
    * @example
    * range([ 1, 5, 6, 3, 7, 8, 9 ])
@@ -189,11 +207,7 @@
   function range() {
     var numbers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-    if (numbers.length === 0) {
-      return 0;
-    }
-
-    return Math.max.apply(Math, toConsumableArray(numbers)) - Math.min.apply(Math, toConsumableArray(numbers));
+    return numbers.length === 0 ? 0 : Math.max.apply(Math, toConsumableArray(numbers)) - Math.min.apply(Math, toConsumableArray(numbers));
   }
 
   /**
@@ -219,7 +233,7 @@
    * Calculates the standard deviation from the set of numbers.
    *
    * @param {array} numbers = [] - Numbers to calculate
-   * @returns {number} - Variance
+   * @returns {number} - Standard deviation
    *
    * @example
    * standardDeviation([ 1, 5, 6, 3, 7, 8, 9 ])
@@ -237,6 +251,7 @@
     mode: mode,
     range: range,
     standardDeviation: standardDeviation,
+    sum: sum,
     variance: variance
   };
 

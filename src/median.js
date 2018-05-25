@@ -1,20 +1,18 @@
 import average from './average'
 
 /**
- * Finds the center number
+ * Finds the center number of a sorted array. If
+ * there are 2 numbers in the center it returns
+ * the average.
  *
  * @param {array} numbers = [] - Numbers to calculate
- * @returns {array} - Array of most occured numbers
+ * @returns {array} - Center number
  *
  * @example
  * median([ 1, 5, 6, 3, 7, 8, 9 ])
  */
 export default function median (numbers = []) {
-  numbers.sort()
+  const index = (numbers.length - 1) / 2
 
-  const middleIndex = Math.round(numbers.length / 2) - 1
-  const middleIndexRem = numbers.length % 2 === 0 ? 1 : 0
-  const nums = numbers.slice(middleIndex, middleIndex + 1 + middleIndexRem)
-
-  return average(nums)
+  return average(numbers.sort().slice(Math.floor(index), Math.ceil(index) + 1))
 }

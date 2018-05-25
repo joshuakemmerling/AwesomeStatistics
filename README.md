@@ -120,9 +120,26 @@ const standardDeviation = awesomeStatistics.standardDeviation(numbers)
 console.log(standardDeviation)
 ```
 
+#### sum()
+
+Adds all of the numbers together.
+
+```javascript
+import awesomeStatistics from 'awesome-statistics'
+
+const numbers = [ 1, 2, 3 ]
+const sum = awesomeStatistics.sum(numbers)
+const sumAgain = awesomeStatistics.sum(numbers, v => v * v)
+const sumOnceMore = awesomeStatistics.sum(numbers, v => v + 1, 10)
+
+console.log(sum)
+console.log(sumAgain)
+console.log(sumOnceMore)
+```
+
 #### variance()
 
-A quantity equal to the square of the standard deviation.
+The variance is a measure of how spread out numbers are.
 
 ```javascript
 import awesomeStatistics from 'awesome-statistics'

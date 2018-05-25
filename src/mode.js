@@ -1,8 +1,9 @@
 /**
- * Finds the number(s) that occur the most
+ * Finds the value(s) that occurs most frequently
+ * in a given set of data.
  *
  * @param {array} numbers = [] - Numbers to calculate
- * @returns {array} - Array of most occured numbers
+ * @returns {array} - Most occured numbers
  *
  * @example
  * mode([ 1, 5, 6, 3, 7, 8, 9 ])
